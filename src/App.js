@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const apiKey = 'c54e2e200a9d0e39f1113ac9d570c166'
+  const apiKey = 'codeee'
   const [weather, setWeather] = useState([]);
   const [city, setCity] = useState("");
 
