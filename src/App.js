@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const apiKey = 'c54e2e200a9d0e39f1113ac9d570c166'
+  const [weather, setWeather] = useState([]);
+  const [city, setCity] = useState("");
+
+  const getWeather = async (e) => {
+    e.preventDefault();
+    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`)
+      .then((response) => response.json())
+      .then(data => {
+        setWeather(data);
+        setCity("");
+      })
+
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='header'>Welcome,</h1>
+      <div>
+        <form className='form' onSubmit={getWeather}>
+          <input type="text"
+            placeholder='Enter City'
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          // onKeyPress={getWeather}
+
+
+          />
+          <button type='submit' className='btn btn-primary'>Search</button>
+        </form>
+      </div>
+      {typeof weather.main === 'undefined' ? (
+        <div><b /><p>Enter the city you want!</p></div>
+      ) : (
+        <div className='wrapper'>
+          <hr></hr>
+          <p className="city">{weather?.name}</p>
+          <p>{weather?.main.temp} F</p>
+          <p>{weather?.weather[0].main}</p>
+        </div>
+      )}
+
     </div>
   );
 }

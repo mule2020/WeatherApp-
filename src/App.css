@@ -23,6 +23,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.city{
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Times New Roman', Times, serif;
+}
+.wrapper{
+  color: #282c34;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+
+}
+
 
 .App-link {
   color: #61dafb;
